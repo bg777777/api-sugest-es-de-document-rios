@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+require('dotenv').config(); // Carregar variáveis de ambiente do .env
 
 // Simulação de banco de dados
 const documentaries = [
@@ -39,8 +40,34 @@ const documentaries = [
         link: "https://example.com/our-planet"
     }
 ];
+// Nova rota GET para sugestões de documentários sobre sustentabilidade
+app.get('/suggestions/documentaries/sustainability', (req, res) => {
+    const sustainabilityDocs = [
+        {
+            title: "The True Cost",
+            director: "Andrew Morgan",
+            description: "Um documentário que explora o impacto da moda rápida na saúde do nosso planeta.",
+            year: 2015,
+            link: "https://example.com/the-true-cost"
+        },
+        // Outros documentários...
+    ];
+    res.json({ documentaries: sustainabilityDocs });
+});
 
-// Endpoint para sugestões de documentários sobre mudanças climáticas
+// Rota GET para dados sobre poluição do ar
+app.get('/data/air-pollution', (req, res) => {
+    const city = req.query.city || "São Paulo";
+    const airPollutionData = {
+        city: city,
+        aqi: 150,
+        main_pollutant: "PM2.5",
+        description: "A qualidade do ar é insalubre para grupos sensíveis."
+    };
+    res.json(airPollutionData);
+});
+
+// Rota para sugestões de documentários sobre mudanças climáticas
 app.get('/suggestions/documentaries/climate-change', (req, res) => {
     const limit = req.query.limit ? parseInt(req.query.limit) : documentaries.length;
     res.json({ documentaries: documentaries.slice(0, limit) });
