@@ -76,5 +76,5 @@ app.get('/suggestions/documentaries/climate-change', (req, res) => {
 // Inicializando o servidor
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log(`API running on port ${port}`);
+    console.log(`API rodando em http://localhost:${port}`);
 });
