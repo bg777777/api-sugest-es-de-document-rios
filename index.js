@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 require('dotenv').config(); // Carregar variáveis de ambiente do .env
 
-// Simulação de banco de dados de documentários
+const cors = require('cors');
+app.use(cors());
+
 const documentaries = [
     {
         title: "Before the Flood",
@@ -133,3 +135,4 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`API rodando na porta ${port}`);
 });
+
